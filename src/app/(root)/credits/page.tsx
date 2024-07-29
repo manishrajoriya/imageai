@@ -1,9 +1,9 @@
 import React from 'react'
 
-function page() {
+function CreditPage() {
   return (
-    <div>page</div>
+    <div>CreditPage</div>
   )
 }
 
-export default page
+export default CreditPage
