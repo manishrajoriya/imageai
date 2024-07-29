@@ -31,12 +31,7 @@ export default function RootLayout({
     <ClerkProvider appearance={{variables: { colorPrimary: '#624cf5'}}}>
     <html lang='en'>
       <body className={cn("font-IBMPlex antialiased ",IBMPlex.variable )}>
-      <SignedOut >
-          <SignInButton />
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
+      
         
         {children}
       </body>
