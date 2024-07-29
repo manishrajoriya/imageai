@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
+import { ThemeProvider } from "@/components/theme-provider"
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
+  
 } from '@clerk/nextjs'
 
 const IBMPlex = IBM_Plex_Sans({ 
@@ -31,9 +28,15 @@ export default function RootLayout({
     <ClerkProvider appearance={{variables: { colorPrimary: '#624cf5'}}}>
     <html lang='en'>
       <body className={cn("font-IBMPlex antialiased ",IBMPlex.variable )}>
-      
-        
+       <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            
         {children}
+        </ThemeProvider>
       </body>
     </html>
   </ClerkProvider>

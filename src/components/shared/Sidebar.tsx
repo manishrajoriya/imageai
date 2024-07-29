@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import { Button } from '../ui/button'
+import { ModeToggle } from '../ui/modeToggle'
 
 function Sidebar() {
   const pathname = usePathname()
@@ -38,6 +39,7 @@ function Sidebar() {
               }
               <li className='flex-center cursor-pointer gap-2 p-4'>
               <UserButton />
+              
             </li>
             </ul>
           </SignedIn>
@@ -50,7 +52,8 @@ function Sidebar() {
             </Button>
           </SignedOut>
           </nav>
-
+             
+            
         </div>
     </aside>
   )

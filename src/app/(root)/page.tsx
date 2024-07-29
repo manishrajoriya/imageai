@@ -1,10 +1,11 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
+import { ModeToggle } from '@/components/ui/modeToggle'
 import React from 'react'
 
 function home() {
   return (
     <div>
       home
+     
     </div>
   )
 }
