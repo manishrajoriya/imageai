@@ -7,9 +7,10 @@ import {
 } from "@/components/ui/sheet"
 import Link from 'next/link'
 import Image from 'next/image'
-import { SignedIn, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import { navLinks } from '@/constants'
 import { usePathname } from 'next/navigation'
+import { Button } from '../ui/button'
 
 
 function MobileNav() {
@@ -51,7 +52,7 @@ function MobileNav() {
                         <li key={link.route} 
                            className={`${isActive && 'gradient-text'} p-18 flex whitespace-nowrap text-dark-700`}
                         >
-                            <Link href={link.route} className='sidebar-link'>
+                            <Link href={link.route} className='sidebar-link cursor-pointer'>
                             <Image src={link.icon} alt={link.label} width={24} height={24} 
                             className={` ${isActive && 'brightness-200'}`}
                             />
@@ -72,6 +73,14 @@ function MobileNav() {
 
                 
             </SignedIn>
+
+            <SignedOut>
+            <Button asChild className='button bg-purple-gradient bg-cover'>
+              <Link href="/sign-in">
+              sign-in
+              </Link>
+            </Button>
+          </SignedOut>
         </nav>
     </header>
   )
