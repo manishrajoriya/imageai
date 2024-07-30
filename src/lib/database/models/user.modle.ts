@@ -9,8 +9,8 @@ export interface User {
     photo: string;
     firstName: string;
     lastName: string;
-    planId: string;
-    creditBalance: number;
+    planId?: string;
+    creditBalance?: number;
 }
 
 const userSchema = new Schema({
