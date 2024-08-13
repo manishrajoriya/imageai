@@ -37,7 +37,7 @@ export const formSchema = z.object({
   publicId: z.string()
 })
 
-function TransformationForm({action, data = null, userId, type, creditBalance, config= null}: TransformationFormProps) {
+export default function TransformationForm({action, data = null, userId, type, creditBalance, config= null}: TransformationFormProps) {
     const transformationType = transformationTypes[type]
     const [image, setImage] = useState(data)
     const [newTransformation, setNewTransformation] = useState<Transformations | null>(null)
@@ -65,9 +65,36 @@ function TransformationForm({action, data = null, userId, type, creditBalance, c
     console.log(values)
   }
 
-  const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {
+   const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {
     const imageSize = aspectRatioOptions[value as AspectRatioKey]
 
+    setImage((prevState: any) => ({
+      ...prevState,
+      aspectRatio: imageSize.aspectRatio,
+      width: imageSize.width,
+      height: imageSize.height,
+    }))
+
+    setNewTransformation(transformationType.config);
+
+    return onChangeField(value)
+  }
+
+  const onInputChangeHandler = (name: string, value: string, onChangeField: (value: string) => void, type: string) => {
+    if (type === "recolor") {
+      setNewTransformation((prevState: any) => ({
+        ...prevState,
+        color: value,
+      }))
+    } else if (type === "remove") {
+      setNewTransformation((prevState: any) => ({
+        ...prevState,
+        prompt: value,
+      }))
+    }
+
+    return onChangeField(value)
+  }
 
 
   return (
@@ -114,13 +141,18 @@ function TransformationForm({action, data = null, userId, type, creditBalance, c
 
         {
           (type === "remove" || type === "recolor") && (
-            <div>
+            <div className="prompt-fild">
             <CustomField
             control={form.control}
             name="color"
-            formLabel="Background Color"
+            formLabel={
+                type === "remove" ? "Object to remove" : "Object to recolor"
+            }
             className="w-full"
-            render={({field})=> <Input {...field} className="input-field"/>}
+            render={({field})=> <Input 
+                                 value={field.value}
+                                 onChange={(e) => onInputChangeHandler('prompt',e.target.value, field.onChange, type )}
+                                 className="input-field"/>}
             
             />
             </div>
@@ -131,6 +163,5 @@ function TransformationForm({action, data = null, userId, type, creditBalance, c
     </Form>
     </div>
   )
-}}
+}
 
-export default TransformationForm
