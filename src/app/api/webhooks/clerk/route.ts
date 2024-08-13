@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { createUser, deleteUser, updateUser } from "@/lib/actions/user.actions";
-import { User } from "@/lib/database/models/user.modle";
+
 
 export async function POST(req: Request) {
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the webhook
@@ -80,6 +80,7 @@ export async function POST(req: Request) {
           userId: newUser._id,
         },
       });
+
     }
 
     return NextResponse.json({ message: "OK", user: newUser });

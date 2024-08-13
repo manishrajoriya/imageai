@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import { Button } from '../ui/button'
-import { ModeToggle } from '../ui/modeToggle'
+
 
 function Sidebar() {
   const pathname = usePathname()
