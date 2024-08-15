@@ -80,7 +80,7 @@ export default function TransformationForm({action, data = null, userId, type, c
     return onChangeField(value)
   }
 
-  const onInputChangeHandler = (name: string, value: string, onChangeField: (value: string) => void, type: string) => {
+  const onInputChangeHandler = (fieldName: string, value: string, onChangeField: (value: string) => void, type: string) => {
     if (type === "recolor") {
       setNewTransformation((prevState: any) => ({
         ...prevState,
@@ -154,7 +154,7 @@ export default function TransformationForm({action, data = null, userId, type, c
                                  onChange={(e) => onInputChangeHandler('prompt',e.target.value, field.onChange, type )}
                                  className="input-field"/>}
             
-            />
+                                />
             </div>
           )
         }
